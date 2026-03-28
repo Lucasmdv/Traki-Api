@@ -71,33 +71,6 @@ public class AuthService {
         return credentialsRepository.save(credentials);
     }
 
-    public CredentialsEntity registerCredentials(RegisterCredentialsRequest request) {
-        if (credentialsRepository.existsByUsername(request.getUsername())) {
-            throw new AuthenticationException("Ya existe un usuario registrado con el usuario: " + request.getUsername(), null);
-        }
-
-        CredentialsEntity credentials = CredentialsEntity.builder()
-                .username(request.getUsername())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .build();
-
-        // Assign default USER role
-        RoleEntity USERRole = rolRepository.findByName("USER")
-                .orElseThrow(() -> new AuthenticationException("No se encontró el rol predeterminado USER. Creá el rol antes de continuar.", null));
-        Set<RoleEntity> roles = new HashSet<>();
-        roles.add(USERRole);
-        credentials.setRoles(roles);
-
-        // Optionally link to existing user profile
-        if (request.getUserId() != null) {
-            User user = userRepository.findById(request.getUserId())
-                    .orElseThrow(() -> new UsernameNotFoundException("User profile not found with id: " + request.getUserId()));
-            credentials.setUser(user);
-        }
-
-        return credentialsRepository.save(credentials);
-    }
-
     /**
      * Registers a new user profile along with credentials in a single transaction-like operation.
      */

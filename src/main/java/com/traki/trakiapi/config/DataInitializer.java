@@ -41,7 +41,6 @@ public class DataInitializer implements ApplicationRunner {
 
     private void seedRoles() {
         if (roleRepository.count() > 0) return;
-
         roleRepository.saveAll(List.of(
                 RoleEntity.builder().name("USER")   .description("Usuario estándar con acceso básico").build(),
                 RoleEntity.builder().name("ADMIN")  .description("Administrador con acceso completo").build(),
@@ -52,7 +51,7 @@ public class DataInitializer implements ApplicationRunner {
 
     private void seedUsers() {
         if (credentialRepository.count() > 0) return;
-
+        /*
         RoleEntity userRole  = roleRepository.findByName("USER")
                 .orElseThrow(() -> new IllegalStateException("Rol USER no encontrado"));
         RoleEntity adminRole = roleRepository.findByName("ADMIN")
@@ -85,7 +84,7 @@ public class DataInitializer implements ApplicationRunner {
                 .user(userProfile)
                 .roles(Set.of(userRole))
                 .build());
-
+        */
         log.info("[DataInitializer] Usuarios creados: admin (ADMIN+USER) pass=00000000, user (USER) pass=11111111");
     }
 }
