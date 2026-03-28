@@ -1,18 +1,14 @@
 package com.traki.trakiapi.models.dtos;
 
 import com.traki.trakiapi.models.enums.CarrierType;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
+@Getter
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class TrackingResult {
 
     private String trackingNumber;
@@ -21,14 +17,10 @@ public class TrackingResult {
     private LocalDateTime estimatedDelivery;
     private List<EventRecord> events;
 
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class EventRecord {
-        private String status;
-        private String description;
-        private LocalDateTime date;
-        private String location;
-    }
+    public record EventRecord(
+            String status,
+            String description,
+            LocalDateTime timestamp,
+            String location
+    ) {}
 }

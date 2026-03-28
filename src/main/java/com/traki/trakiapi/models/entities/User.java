@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "Users")
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -20,12 +21,6 @@ public class User {
     @Column(name="user_id",nullable = false, unique = true)
     public long Id;
 
-    @Column(nullable = false, unique = true)
-    public String UserName;
-
-    public String Password;
-
-    public String Role;
 
     @Column(name = "user_first_name", nullable = false, length = 20)
     private String firstName;
