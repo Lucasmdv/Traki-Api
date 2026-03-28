@@ -27,8 +27,8 @@ public class AndreaniTrackingProvider implements ICarrierTrackingProvider {
                 .currentStatus("despachao el delga")
                 .estimatedDelivery(LocalDateTime.now().plusDays(1))
                 .events(List.of(
-                        TrackingResult.EventRecord.builder().status("EN REPARTO").description("El paquete está en manos del jijolin").date(LocalDateTime.now()).location("Planta Córdoba").build(),
-                        TrackingResult.EventRecord.builder().status("INGRESADO").description("El paquete ingresó al centro de distribución").date(LocalDateTime.now().minusDays(1)).location("Planta Buenos Aires").build()
+                        new TrackingResult.EventRecord("EN REPARTO", "El paquete está en manos del jijolin", LocalDateTime.now(), "Planta Córdoba"),
+                        new TrackingResult.EventRecord("INGRESADO", "El paquete ingresó al centro de distribución", LocalDateTime.now().minusDays(1), "Planta Buenos Aires")
                 ))
                 .build();
     }
