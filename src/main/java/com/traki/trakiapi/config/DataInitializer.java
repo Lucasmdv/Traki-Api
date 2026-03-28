@@ -58,16 +58,15 @@ public class DataInitializer implements ApplicationRunner {
         RoleEntity adminRole = roleRepository.findByName("ADMIN")
                 .orElseThrow(() -> new IllegalStateException("Rol ADMIN no encontrado"));
 
-        // --- Admin (contraseña = su DNI: 00000000) ---
+        // --- Admin (contraseña = 00000000) ---
         User adminProfile = userRepository.save(User.builder()
                 .firstName("Admin")
                 .lastName("Sistema")
-                .dni("00000000")
                 .dateOfRegistration(LocalDate.now())
                 .build());
 
         credentialRepository.save(CredentialsEntity.builder()
-                .username("admin")
+                .username("a@mail.com")
                 .password(passwordEncoder.encode("00000000"))
                 .user(adminProfile)
                 .roles(Set.of(adminRole, userRole))
@@ -77,7 +76,6 @@ public class DataInitializer implements ApplicationRunner {
         User userProfile = userRepository.save(User.builder()
                 .firstName("Usuario")
                 .lastName("Prueba")
-                .dni("11111111")
                 .dateOfRegistration(LocalDate.now())
                 .build());
 

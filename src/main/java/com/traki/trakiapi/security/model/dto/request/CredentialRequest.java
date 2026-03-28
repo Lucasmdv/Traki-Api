@@ -3,7 +3,6 @@ package com.traki.trakiapi.security.model.dto.request;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -23,7 +22,7 @@ public class CredentialRequest {
     @NotBlank(message = "Username is required")
     @Size(min = 4, max = 50, message = "Username must be between 4 and 50 characters")
     @Email
-    private String username;
+    private String email;
 
     @Schema(description = "User password (must be encrypted before storing).", example = "P@ssw0rd123", minLength = 8)
     @NotBlank(message = "Password is required")
