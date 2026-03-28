@@ -22,7 +22,7 @@ public class CredentialRequest {
     @Schema(description = "Unique username of the user.", example = "john_doe", minLength = 4, maxLength = 50)
     @NotBlank(message = "Username is required")
     @Size(min = 4, max = 50, message = "Username must be between 4 and 50 characters")
-    @Pattern(regexp = "^[A-Za-z0-9._-]+$", message = "Username must contain only letters, numbers, dots, hyphens or underscores")
+    @Email
     private String username;
 
     @Schema(description = "User password (must be encrypted before storing).", example = "P@ssw0rd123", minLength = 8)
