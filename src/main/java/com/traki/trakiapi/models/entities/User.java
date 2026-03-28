@@ -34,9 +34,6 @@ public class User {
     @Column(name = "user_last_name", nullable = false, length = 20)
     private String lastName;
 
-    @Column(name = "user_dni", nullable = false, length = 8, unique = true)
-    private String dni;
-
     @Column(name = "user_date_of_registration")
     @CreationTimestamp
     private LocalDate dateOfRegistration;
