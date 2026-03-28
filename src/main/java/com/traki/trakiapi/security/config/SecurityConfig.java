@@ -31,14 +31,12 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final RestAuthenticationEntryPoint restAuthenticationEntryPoint;
-    private final CredentialRepository credentialRepository;
 
     public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter,
             RestAuthenticationEntryPoint restAuthenticationEntryPoint,
             CredentialRepository credentialRepository) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
         this.restAuthenticationEntryPoint = restAuthenticationEntryPoint;
-        this.credentialRepository = credentialRepository;
     }
 
     @Bean
@@ -50,7 +48,7 @@ public class SecurityConfig {
                                 "/v3/api-docs/**", "/user/register")
                         .permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .anyRequest().authenticated())
+                        .anyRequest().permitAll())
                 .cors(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .headers(h -> h.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
@@ -60,11 +58,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return username -> credentialRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-    }
 
     @Bean
     public AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService,
