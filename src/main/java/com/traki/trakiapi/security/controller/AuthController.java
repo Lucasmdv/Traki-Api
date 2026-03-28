@@ -88,7 +88,7 @@ public class AuthController {
             }
             userResp.setFirstName(userEntity.getFirstName());
             userResp.setLastName(userEntity.getLastName());
-            userResp.setDni(userEntity.getDni());
+
             if (userEntity.getDateOfRegistration() != null) {
                 userResp.setDateOfRegistration(userEntity.getDateOfRegistration().toString());
             }

@@ -48,7 +48,6 @@ public class AuthService {
         User user = User.builder()
                 .firstName(request.getUser().getFirstName())
                 .lastName(request.getUser().getLastName())
-                .dni(request.getUser().getDni())
                 .build();
         user = userRepository.save(user);
 
@@ -108,7 +107,6 @@ public class AuthService {
         User user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
-                .dni(request.getDni())
                 .build();
         user = userRepository.save(user);
 
