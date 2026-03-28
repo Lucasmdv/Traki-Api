@@ -22,8 +22,6 @@ public class UserResponse extends RepresentationModel<UserResponse> {
     @Schema(description = "User's last name", example = "Doe")
     private String lastName;
 
-    @Schema(description = "User's DNI (national identity document number)", example = "12345678")
-    private String dni;
 
     @Schema(description = "Date of registration", example = "2021-01-01")
     private String dateOfRegistration;

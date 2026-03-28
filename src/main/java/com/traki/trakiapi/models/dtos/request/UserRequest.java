@@ -28,8 +28,4 @@ public class UserRequest {
     @Schema(description = "User's last name", example = "Rodríguez", maxLength = 20)
     private String lastName;
 
-    @NotBlank
-    @Pattern(regexp = "^[0-9]{8}$", message = "DNI must contain exactly 8 digits")
-    @Schema(description = "User's DNI (National ID Number)", example = "33445566", maxLength = 8)
-    private String dni;
 }
