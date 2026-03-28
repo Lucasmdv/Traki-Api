@@ -10,4 +10,6 @@ public interface CredentialRepository extends JpaRepository<CredentialsEntity, L
 
     Optional<CredentialsEntity> findByUsername(String username);
     Boolean existsByUsername(String username);
+    Optional<CredentialsEntity> findByEmail(String email);
+    Boolean existsByEmail(String email);
 }

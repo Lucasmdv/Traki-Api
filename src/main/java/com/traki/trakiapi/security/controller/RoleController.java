@@ -10,8 +10,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
-
 @RestController
 @RequestMapping("/roles")
 @Tag(name = "Roles & Permits", description = "Endpoints to manage roles and assigns")

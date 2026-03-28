@@ -20,3 +20,7 @@ ALTER TABLE IF EXISTS public.roles
 INSERT INTO roles
 VALUES (1,'Rol Administrador', 'ADMIN')
 ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO roles
+VALUES (2,'Rol usuario', 'USER')
+ON CONFLICT (id) DO NOTHING;

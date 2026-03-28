@@ -39,10 +39,12 @@ public class AuthService {
             throw new AuthenticationException("Los datos de registro están incompletos. Verificá la información enviada.", null);
         }
 
-        String username = request.getCredentials().getUsername();
-        if (credentialsRepository.existsByUsername(username)) {
-            throw new AuthenticationException("Ya existe un usuario registrado con el usuario: " + username, null);
+        String email = request.getCredentials().getEmail();
+        if (credentialsRepository.existsByEmail(email)) {
+            throw new AuthenticationException("Ya existe un usuario registrado con el correo: " + email, null);
         }
+
+        String username = email.replaceAll("@.*$", "");
 
         // Create user profile
         User user = User.builder()
@@ -53,7 +55,8 @@ public class AuthService {
 
         // Create credentials linked to profile
         CredentialsEntity credentials = CredentialsEntity.builder()
-                .username(request.getCredentials().getUsername())
+                .email(email)
+                .username(username)
                 .password(passwordEncoder.encode(request.getCredentials().getPassword()))
                 .user(user)
                 .build();
